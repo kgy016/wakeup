@@ -6,7 +6,7 @@ async def wake_streamlit():
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
         # 본인의 스트림릿 앱 URL로 수정하세요
-        url = "https://your-app-url.streamlit.app/" 
+        url = "https://eattoday-pseyfcpwwwjzfd5mbqidj4.streamlit.app"
         
         print(f"Connecting to {url}...")
         await page.goto(url, wait_until="networkidle")
