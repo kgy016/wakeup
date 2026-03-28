@@ -1,0 +1,26 @@
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+    # 한국 시간 기준 대략 10시간마다 실행 (UTC 기준)
+    - cron: '0 */10 * * *'
+  workflow_dispatch: # 우리가 직접 '실행' 버튼을 눌러볼 수 있게 해줍니다.
+
+jobs:
+  wake-up:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+          
+      - name: Run wake-up script
+        run: python keep_alive.py
